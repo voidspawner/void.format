@@ -277,14 +277,14 @@ null
 <td>
 
 ```
-1 2 3
+1 text true false null
 ```
 
 </td>
 <td>
 
 ```json
-[1, 2, 3]
+[1, "text", true, false, null]
 ```
 
 </td>
@@ -294,14 +294,14 @@ null
 <td>
 
 ```
-1 text true false null
+[1 2 3]
 ```
 
 </td>
 <td>
 
 ```json
-[1, "text", true, false, null]
+[1, 2, 3]
 ```
 
 </td>
