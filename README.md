@@ -23,6 +23,7 @@
 - Array
 - Dictionary
 - Null
+- Binary
 
 ## Data Separator
 
@@ -451,6 +452,29 @@ mixed: [1 [2 3]
 
 </td>
 </tr>
+
+</tr>
+
+<tr>
+<td>
+
+```
+binary text length 10
+  ~10~..........
+```
+
+</td>
+<td>
+
+```json
+{
+  "binary text length 10": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+}
+```
+
+</td>
+</tr>
+
 </table>
 
 ## V O I D lang
