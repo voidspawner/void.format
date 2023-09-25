@@ -17,6 +17,12 @@
 
 application/void
 
+## Data Separator
+
+- Spaces ```" "```
+- Tabs ```"\t"```
+- Newlines ```"\r\n"```
+  
 ## Example
 
 <table>
