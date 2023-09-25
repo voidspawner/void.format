@@ -349,6 +349,27 @@ null
 <td>
 
 ```
+name: text
+other name: 123
+```
+
+</td>
+<td>
+
+```json
+{
+  "name": "text",
+  "other name": 123
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
 name
   text
 multiline text
