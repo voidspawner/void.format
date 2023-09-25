@@ -332,23 +332,6 @@ null
 <td>
 
 ```
-text another text
-```
-
-</td>
-<td>
-
-```json
-["text", "another", "text"]
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
 [name: text "another name": 123]
 ```
 
