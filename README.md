@@ -468,7 +468,7 @@ binary data length 10
 
 ```json
 {
-  "binary data length 10": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+  "binary data length 10": "\u0000..."
 }
 ```
 
