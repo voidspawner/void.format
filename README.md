@@ -29,7 +29,12 @@
 - Spaces ```" "```
 - Tabs ```"\t"```
 - Newlines ```"\r\n"```
-  
+
+## Data Indent
+
+- Spaces ```" "```
+- Tabs ```"\t"``` (preferred)
+
 ## Example
 
 <table>
