@@ -414,7 +414,9 @@ mixed: [1 [2 3]
     "name": "value",
     "another name": "other value"
   },
-  "mixed": [1, [2, 3], {"name": "value"}]
+  "mixed": [1, [2, 3], {
+    "name": "value"
+  }]
 }
 ```
 
