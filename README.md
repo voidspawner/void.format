@@ -8,7 +8,12 @@
 
 ## MIME Type
 
-application/void
+```application/void```
+
+## File Extension
+
+- ```.void``` (preferred)
+- ```.txt```
 
 ## Value Types
 
