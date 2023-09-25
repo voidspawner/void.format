@@ -459,7 +459,7 @@ mixed: [1 [2 3]
 <td>
 
 ```
-binary text length 10
+binary data length 10
   10#..........
 ```
 
@@ -468,7 +468,7 @@ binary text length 10
 
 ```json
 {
-  "binary text length 10": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+  "binary data length 10": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
 }
 ```
 
