@@ -504,7 +504,7 @@ mixed: [1 [2 3]
   ],
   "dictionary": {
     "name": "value",
-    "another name": "other value"
+    "other name": "other value"
   },
   "mixed": [1, [2, 3], {
     "name": "value"
@@ -582,7 +582,7 @@ base64
 
 ```
 reference
-  | {dictionary.another name}
+  | {dictionary.other name}
 ```
 
 </td>
