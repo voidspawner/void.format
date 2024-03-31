@@ -83,6 +83,23 @@ text
 <td>
 
 ```
+text with space
+```
+
+</td>
+<td>
+
+```json
+"text with space"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
 '
 very 
 very 
@@ -309,7 +326,11 @@ null
 <td>
 
 ```
-1 text true false null
+1
+text
+true
+false
+null
 ```
 
 </td>
@@ -438,8 +459,10 @@ text in line
   line
 bool
   true
-empty array: []
-value array: [null]
+empty array
+  []
+value array
+  [null]
 array
   1
   2
@@ -448,7 +471,7 @@ array table
   |
   1 12.34 Name
   2 56.78 "Other name"
-dict
+dictionary
   name
     value
   other name
@@ -479,7 +502,7 @@ mixed: [1 [2 3]
     [1, 12.34, "Name"]
     [2, 56.78, "Other name"]
   ],
-  "dict": {
+  "dictionary": {
     "name": "value",
     "another name": "other value"
   },
