@@ -577,6 +577,26 @@ base64
 </td>
 </tr>
 
+<tr>
+<td>
+
+```
+reference
+  | {dictionary.another name}
+```
+
+</td>
+<td>
+
+```json
+{
+  "reference": "other value"
+}
+```
+
+</td>
+</tr>
+
 </table>
 
 ## V O I D lang
