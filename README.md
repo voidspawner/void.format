@@ -83,9 +83,10 @@ text
 <td>
 
 ```
-'very 
- very
- very long text'
+'
+very 
+very 
+very long text
 ```
 
 </td>
@@ -102,8 +103,9 @@ text
 <td>
 
 ```
-"multiline
-text"
+"
+multiline
+text
 ```
 
 </td>
@@ -341,8 +343,30 @@ null
 <td>
 
 ```
+|
 1 12.34 Name
 2 56.78 "Other name"
+```
+
+</td>
+<td>
+
+```json
+[
+  [1, 12.34, "Name"],
+  [2, 56.78, "Other name"]
+]
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+[1 12.34 Name]
+[2 56.78 "Other name"]
 ```
 
 </td>
@@ -403,9 +427,15 @@ other name: 123
 name
   text
 multiline text
-  "text
+  "
+  text
   next
-  line"
+  line
+text in line
+  '
+  text
+  in
+  line
 bool
   true
 empty array: []
@@ -414,6 +444,10 @@ array
   1
   2
   3
+array table
+  |
+  1 12.34 Name
+  2 56.78 "Other name"
 dict
   name
     value
@@ -432,6 +466,7 @@ mixed: [1 [2 3]
 {
   "name": "text",
   "multiline text": "text\nnext\nline",
+  "text in line": "textinline",
   "bool": true,
   "empty array": [],
   "value array": [null],
@@ -439,6 +474,10 @@ mixed: [1 [2 3]
     1,
     2,
     3
+  ],
+  "array table": [
+    [1, 12.34, "Name"]
+    [2, 56.78, "Other name"]
   ],
   "dict": {
     "name": "value",
@@ -469,6 +508,46 @@ binary data length 10
 ```json
 {
   "binary data length 10": "\u0000..."
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+gzip + base64
+  | eNoDAAAAAAE=
+```
+
+</td>
+<td>
+
+```json
+{
+  "gzip + base64": "text text text text ..."
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+base64
+  | base64 dGV4dCB0ZXh0IHRle...
+```
+
+</td>
+<td>
+
+```json
+{
+  "base64": "text text text text ..."
 }
 ```
 
