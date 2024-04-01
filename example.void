@@ -1,0 +1,11 @@
+settings
+	cli
+		color
+			true
+	symbols
+		[a b c]
+run
+	[. Hi! There]
+	[= value 100]
+	[+ value 1]
+	[. {value}]
