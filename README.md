@@ -27,9 +27,7 @@
 
 ## Data Separator
 
-- Spaces ```" "```
-- Tabs ```"\t"```
-- Newlines ```"\n"```
+- Space ```" "```
 
 ## Data Indent
 
