@@ -156,7 +156,24 @@ text
 <td>
 
 ```
-text\r\n\t\u1234\"\\
+c:\Users\name\Desktop
+```
+
+</td>
+<td>
+
+```json
+"c:\\Users\\name\\Desktop"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+"text\r\n\t\u1234\"\\"
 ```
 
 </td>
