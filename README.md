@@ -29,7 +29,7 @@
 
 - Spaces ```" "```
 - Tabs ```"\t"```
-- Newlines ```"\r\n"```
+- Newlines ```"\n"```
 
 ## Data Indent
 
@@ -57,6 +57,23 @@ text
 
 ```json
 "text"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+text\ with\ space
+```
+
+</td>
+<td>
+
+```json
+"text with space"
 ```
 
 </td>
@@ -366,7 +383,7 @@ null
 ```
 |
 1 12.34 Name
-2 56.78 "Other name"
+2 56.78 Other\ name
 ```
 
 </td>
@@ -386,8 +403,9 @@ null
 <td>
 
 ```
-[1 12.34 Name]
-[2 56.78 "Other name"]
+|,
+1,12.34,Name
+2,56.78,Other name
 ```
 
 </td>
@@ -407,25 +425,10 @@ null
 <td>
 
 ```
-[name: text "another name": 123]
-```
-
-</td>
-<td>
-
-```json
-{"name": "text", "another name": 123}
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-name: text
-other name: 123
+name
+  text
+other name
+  123
 ```
 
 </td>
@@ -447,39 +450,33 @@ other name: 123
 ```
 name
   text
-multiline text
-  "
+multiline text "
   text
   next
   line
-text in line
-  '
+text in line '
   text
   in
   line
 bool
   true
 empty array
-  []
-value array
-  [null]
+  |
+with empty value
+  |
+    ""
 array
   1
   2
   3
-array table
-  |
+array table |
   1 12.34 Name
-  2 56.78 "Other name"
+  2 56.78 Other\ name
 dictionary
   name
     value
   other name
     other value
-mixed: [1 [2 3]
-  name
-    value
-]
 ```
 
 </td>
@@ -492,12 +489,8 @@ mixed: [1 [2 3]
   "text in line": "textinline",
   "bool": true,
   "empty array": [],
-  "value array": [null],
-  "array": [
-    1,
-    2,
-    3
-  ],
+  "with empty value": [""],
+  "array": [1, 2, 3],
   "array table": [
     [1, 12.34, "Name"]
     [2, 56.78, "Other name"]
@@ -505,10 +498,7 @@ mixed: [1 [2 3]
   "dictionary": {
     "name": "value",
     "other name": "other value"
-  },
-  "mixed": [1, [2, 3], {
-    "name": "value"
-  }]
+  }
 }
 ```
 
@@ -522,7 +512,7 @@ mixed: [1 [2 3]
 
 ```
 binary data length 10
-  | 10 ..........
+  | 10 
 ```
 
 </td>
@@ -530,7 +520,7 @@ binary data length 10
 
 ```json
 {
-  "binary data length 10": "\u0000..."
+  "binary data length 10": "\u0003\u0003\u0003..."
 }
 ```
 
@@ -562,7 +552,7 @@ gzip + base64
 
 ```
 base64
-  | base64 dGV4dCB0ZXh0IHRle...
+  | dGV4dCB0ZXh0IHRle...
 ```
 
 </td>
@@ -592,6 +582,23 @@ reference
 {
   "reference": "other value"
 }
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+|short\ form 1 2 3|name:value other\ name:other\ value||
+```
+
+</td>
+<td>
+
+```json
+["short form",1,2,3{"name":"value","other name":"other value"}]
 ```
 
 </td>
