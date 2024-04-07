@@ -364,23 +364,6 @@ null
 <td>
 
 ```
-[1 2 3]
-```
-
-</td>
-<td>
-
-```json
-[1, 2, 3]
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
 |
 1 12.34 Name
 2 56.78 Other\ name
@@ -404,7 +387,7 @@ null
 
 ```
 |,
-1,12.34,Name
+1,12.34,Comma separator
 2,56.78,Other name
 ```
 
@@ -413,7 +396,7 @@ null
 
 ```json
 [
-  [1, 12.34, "Name"],
+  [1, 12.34, "Comma separator"],
   [2, 56.78, "Other name"]
 ]
 ```
@@ -591,14 +574,14 @@ reference
 <td>
 
 ```
-|short\ form 1 2 3|name:value other\ name:other\ value||
+|short\ form 1 2 3|name:value||
 ```
 
 </td>
 <td>
 
 ```json
-["short form",1,2,3{"name":"value","other name":"other value"}]
+["short form",1,2,3{"name":"value"}]
 ```
 
 </td>
