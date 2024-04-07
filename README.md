@@ -538,7 +538,7 @@ gzip + base64
 
 ```json
 {
-  "gzip + base64": "text text text text ..."
+  "gzip + base64": "text text text ..."
 }
 ```
 
