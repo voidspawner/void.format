@@ -479,7 +479,7 @@ empty array
   |
 with empty value
   |
-    ""
+    "
 array
   1
   2
