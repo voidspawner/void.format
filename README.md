@@ -613,7 +613,7 @@ reference
 <td>
 
 ```json
-["short form",1,2,3{"name":"value"}]
+["short form",1,2,3,{"name":"value"}]
 ```
 
 </td>
