@@ -4,6 +4,8 @@
 
 **⌜ V O I D format ⌟** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by human and by program.
 
+**The project is in the process of development. Code and description are subject to change and inconsistency.**
+
 <img src="https://i.imgur.com/kx2UcUh.jpg" width="100%">
 
 ## MIME Type
