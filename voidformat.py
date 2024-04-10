@@ -46,15 +46,21 @@ class VoidFormat:
 	@staticmethod
 	def escape(text: str, extra: list = []):
 		result = text.replace('\\', '\\\\').replace('|', '\\|').replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t').replace('\b', '\\b').replace('\f', '\\f')
+		count = 0
 		for symbol in extra:
-			result = result.replace(symbol, '\\' + symbol)
-		return result
+			count += result.count(symbol)
+		if count <= 2:
+			for symbol in extra:
+				result = result.replace(symbol, '\\' + symbol)
+			return result
+		else:
+			return '"' + result + '"'
 
 	@staticmethod
 	def encode_binary(data):
 		text_base64 = str(base64.b64encode(data), "utf-8")
 		text_gzip = str(base64.b64encode(gzip.compress(data)), "utf-8")
-		return '|' + (text_gzip if len(text_gzip) < len(text_base64) else text_base64)
+		return '| ' + (text_gzip if len(text_gzip) < len(text_base64) else text_base64)
 
 	@staticmethod
 	def encode_short(data, separator: str = ' '):
@@ -62,6 +68,8 @@ class VoidFormat:
 			return
 		data_type = type(data)
 		if data_type is str:
+			if data == '':
+				return '""'
 			return VoidFormat.escape(data, [separator])
 		elif data_type is int:
 			return str(data)
@@ -74,11 +82,14 @@ class VoidFormat:
 		elif data_type is list:
 			result = '|'
 			first_value = True
+			previous_list = False
 			for value in data:
-				if not first_value and type(value) not in [list, dict]:
+				current_list = type(value) in [list, dict]
+				if not first_value and not current_list and not previous_list:
 					result += separator
 				else:
 					first_value = False
+				previous_list = current_list
 				result += VoidFormat.encode_short(value, separator)
 			result += '|'
 			return result
@@ -164,7 +175,7 @@ class VoidFormat:
 				if not first_value:
 					result += '\n'
 				else:
-					first_value = False			
+					first_value = False
 				value = data[name]
 				result += (indent * level) + name + '\n' + VoidFormat.encode_settings(value, indent, level + (1 if type(value) is not list else 0))
 			return result
@@ -202,7 +213,7 @@ if __name__ == "__main__":
 			if len(sys.argv) > 1:
 				method = sys.argv[1].lower()
 				data = {
-					'short': [1, 2, 3, True, False, None, 23.94, "text", "text text", [11, 22], {"name": "value 1", "name 2": "value 2", "other":"other", "another":123}, b"abc"],
+					'short': [1, 2, 3, True, False, None, 23.94, "text", "text text", "text text text text", "", [11, 22], {"name": "value 1", "name 2": "value 2", "other":"other", "another":123}, -10, b"abc"],
 					'table': [[1, "text", 10.1], [2, "text 2", 10.2], [3, "text\t3", 10.3]],
 					'settings': {
 						"Product": {
