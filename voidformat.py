@@ -10,16 +10,11 @@ class VoidFormat:
 	METHOD_SHORT    = 'short'
 	METHOD_TABLE    = 'table'
 	METHOD_SETTINGS = 'settings'
-	METHOD_CODE     = 'code'
 
 	@staticmethod
 	def encode(data, method: str = METHOD_SHORT, separator: str = None, indent: str = None):
 		method = method.lower()
-		if method == VoidFormat.METHOD_CODE:
-			if indent == None:
-				indent = '\t'
-			return VoidFormat.encode_code(data, indent)
-		elif method == VoidFormat.METHOD_SETTINGS:
+		if method == VoidFormat.METHOD_SETTINGS:
 			if indent == None:
 				indent = '\t'
 			return VoidFormat.encode_settings(data, indent)
@@ -34,11 +29,7 @@ class VoidFormat:
 	@staticmethod
 	def decode(text: str, method: str = METHOD_SHORT, separator: str = None, indent: str = None):
 		method = method.lower()
-		if method == VoidFormat.METHOD_CODE:
-			if indent == None:
-				indent = '\t'
-			return VoidFormat.decode_code(text, indent)
-		elif method == VoidFormat.METHOD_SETTINGS:
+		if method == VoidFormat.METHOD_SETTINGS:
 			if indent == None:
 				indent = '\t'
 			return VoidFormat.decode_settings(text, indent)
@@ -53,6 +44,13 @@ class VoidFormat:
 	# Encode
 
 	@staticmethod
+	def escape(text: str, extra: list = []):
+		result = text.replace('\\', '\\\\').replace('|', '\\|').replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t').replace('\b', '\\b').replace('\f', '\\f')
+		for symbol in extra:
+			result = result.replace(symbol, '\\' + symbol)
+		return result
+
+	@staticmethod
 	def encode_binary(data):
 		text_base64 = str(base64.b64encode(data), "utf-8")
 		text_gzip = str(base64.b64encode(gzip.compress(data)), "utf-8")
@@ -64,7 +62,7 @@ class VoidFormat:
 			return
 		data_type = type(data)
 		if data_type is str:
-			return data.replace('\\', '\\\\').replace('|', '\\|').replace('[', '\\[').replace(']', '\\]').replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t').replace('\b', '\\b').replace('\f', '\\f').replace(separator, '\\' + separator)
+			return VoidFormat.escape(data, [separator])
 		elif data_type is int:
 			return str(data)
 		elif data_type is float:
@@ -74,18 +72,18 @@ class VoidFormat:
 		elif data is None:
 			return 'null'
 		elif data_type is list:
-			result = '['
+			result = '|'
 			first_value = True
 			for value in data:
-				if not first_value:
+				if not first_value and type(value) not in [list, dict]:
 					result += separator
 				else:
 					first_value = False
 				result += VoidFormat.encode_short(value, separator)
-			result += ']'
+			result += '|'
 			return result
 		elif data_type is dict:
-			result = '['
+			result = '|'
 			first_value = True
 			for name in data:
 				value = data[name]
@@ -93,9 +91,9 @@ class VoidFormat:
 					result += separator
 				else:
 					first_value = False
-				name = name.replace('\\', '\\\\').replace(':', '\\:').replace('|', '\\|').replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t').replace('\b', '\\b').replace('\f', '\\f').replace(separator, '\\' + separator)
+				name = VoidFormat.escape(name, [separator, ':'])
 				result += name + ':' + VoidFormat.encode_short(value, separator)
-			result += ']'
+			result += '|'
 			return result
 		elif data_type == bytes:
 			return VoidFormat.encode_binary(data)
@@ -121,7 +119,7 @@ class VoidFormat:
 					first_value = False
 				data_type = type(value)
 				if data_type is str:
-					result += value.replace('\\', '\\\\').replace('|', '\\|').replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t').replace('\b', '\\b').replace('\f', '\\f').replace(separator, '\\' + separator)
+					result += VoidFormat.escape(value, [separator])
 				elif data_type is int:
 					result += str(value)
 				elif data_type is float:
@@ -173,62 +171,6 @@ class VoidFormat:
 		elif data_type == bytes:
 			return (indent * level) + VoidFormat.encode_binary(data)
 
-	@staticmethod
-	def encode_code(data: str, indent: str = '\t', level: int = 0):
-		data_type = type(data)
-		if data_type is str:
-			result = data.replace('\\', '\\\\').replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t').replace('\b', '\\b').replace('\f', '\\f')
-			if ' ' in result or '[' in result or ']' in result or '|' in result:
-				result = '"' + result + '"'
-			return (indent * level) + result
-		elif data_type is int:
-			return (indent * level) + str(data)
-		elif data_type is float:
-			return (indent * level) + str(data)
-		elif data_type is bool:
-			return (indent * level) + ('true' if data else 'false')
-		elif data is None:
-			return (indent * level) + 'null'
-		elif data_type is list:
-			if len(data) == 0:
-				return '[]'
-			first_value = True
-			if len(data) < 4:
-				result = (indent * level) + '['
-				for value in data:
-					if not first_value:
-						result += ' '
-					else:
-						first_value = False
-					result += VoidFormat.encode_code(value, indent)
-				result += ']'
-			else:
-				result = ''
-				for value in data:
-					if not first_value:
-						result += '\n'
-					else:
-						first_value = False
-					result += VoidFormat.encode_code(value, indent, level)
-			return result
-		elif data_type is dict:
-			result = ''
-			first_value = True
-			for name in data:
-				value = data[name]
-				if not first_value:
-					result += '\n'
-				else:
-					first_value = False
-				name = name.replace('\\', '\\\\').replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t').replace('\b', '\\b').replace('\f', '\\f')
-				if ' ' in name or '[' in name or ']' in name or '|' in name:
-					name = '"' + name + '"'
-				result += (indent * level) + name + '\n' + VoidFormat.encode_code(value, indent, level + 1)
-			return result
-		elif data_type == bytes:
-			return VoidFormat.encode_binary(data)
-
-
 	# Decode
 
 	@staticmethod
@@ -245,10 +187,6 @@ class VoidFormat:
 
 	@staticmethod
 	def decode_settings(text: str, indent: str = '\t'):
-		pass
-
-	@staticmethod
-	def decode_code(text: str, indent: str = '\t'):
 		pass
 
 if __name__ == "__main__":
@@ -273,23 +211,24 @@ if __name__ == "__main__":
 							"Count": 200,
 							"Weight": 800,
 							"Tax": "10%",
+							"Tags": [],
 							"Image": b"abc",
-							"Payment Method": ["VISA", "MasterCard", "PayPal"]
-						}
-					},
-					'code': {
-						'settings': {
-							'cli': {
-								'color': True
+							"Payment Method": ["VISA", "MasterCard", "PayPal"],
+							"code": {
+								'settings': {
+									'cli': {
+										'color': True
+									}
+								},
+								'run': [
+									['.', 'Hi!'],
+									['=', 'value', 100],
+									['+', 'value', 1],
+									['.', '{value}']
+								]
 							}
-						},
-						'run': [
-							['.', 'Hi!'],
-							['=', 'value', 100],
-							['+', 'value', 1],
-							['.', '{value}']
-						]
-					}
+						}
+					} 
 				}
 				if method == 'encode.short':
 					data_short = data['short'].copy()
@@ -305,9 +244,6 @@ if __name__ == "__main__":
 					data_settings['Product']['Image'] = 'binary data `abc`'
 					indent = App.indent()
 					App.show('settings', data_settings, VoidFormat.encode(data['settings'], method=VoidFormat.METHOD_SETTINGS, indent=indent))
-				elif method == 'encode.code':
-					indent = App.indent()
-					App.show('code', data['code'], VoidFormat.encode(data['code'], method=VoidFormat.METHOD_CODE, indent=indent))
 				elif method == 'encode.short.json':
 					file_data = App.file_data()
 					separator = App.separator(True)
@@ -320,17 +256,11 @@ if __name__ == "__main__":
 					file_data = App.file_data()
 					indent = App.indent(True)
 					App.show('settings', file_data, VoidFormat.encode(file_data, method=VoidFormat.METHOD_SETTINGS, indent=indent))
-				elif method == 'encode.code.json':
-					file_data = App.file_data()
-					indent = App.indent(True)
-					App.show('code', file_data, VoidFormat.encode(file_data, method=VoidFormat.METHOD_CODE, indent=indent))
 				elif method == 'decode.short.file':
 					return
 				elif method == 'decode.table.file':
 					return
 				elif method == 'decode.settings.file':
-					return
-				elif method == 'decode.code.file':
 					return
 			App.help()
 
@@ -344,8 +274,6 @@ if __name__ == "__main__":
 			print('    table')
 			print('        separator')
 			print('    settings')
-			print('        indent')
-			print('    code')
 			print('        indent')
 			print('Use')
 			print(f'    Encode short format')
