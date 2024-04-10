@@ -2,7 +2,9 @@
 
 ## Description
 
-**⌜ V O I D format ⌟** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by humans and by programs.
+**⌜ V O I D format ⌟** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by human and by program.
+
+**The project is in the process of development. Code and description are subject to change and inconsistency.**
 
 <img src="https://i.imgur.com/kx2UcUh.jpg" width="100%">
 
@@ -27,9 +29,7 @@
 
 ## Data Separator
 
-- Spaces ```" "```
-- Tabs ```"\t"```
-- Newlines ```"\r\n"```
+- Space ```" "```
 
 ## Data Indent
 
@@ -57,6 +57,23 @@ text
 
 ```json
 "text"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+text\ with\ space
+```
+
+</td>
+<td>
+
+```json
+"text with space"
 ```
 
 </td>
@@ -139,6 +156,23 @@ text
 <td>
 
 ```
+c:\Users\name\Desktop
+```
+
+</td>
+<td>
+
+```json
+"c:\\Users\\name\\Desktop"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
 "text\r\n\t\u1234\"\\"
 ```
 
@@ -208,6 +242,23 @@ text
 
 ```
 100_000_000
+```
+
+</td>
+<td>
+
+```json
+100000000
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+100 000 000
 ```
 
 </td>
@@ -347,26 +398,9 @@ null
 <td>
 
 ```
-[1 2 3]
-```
-
-</td>
-<td>
-
-```json
-[1, 2, 3]
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
 |
 1 12.34 Name
-2 56.78 "Other name"
+2 56.78 Other\ name
 ```
 
 </td>
@@ -386,8 +420,9 @@ null
 <td>
 
 ```
-[1 12.34 Name]
-[2 56.78 "Other name"]
+|,
+1,12.34,Comma separator
+2,56.78,Other name
 ```
 
 </td>
@@ -395,7 +430,7 @@ null
 
 ```json
 [
-  [1, 12.34, "Name"],
+  [1, 12.34, "Comma separator"],
   [2, 56.78, "Other name"]
 ]
 ```
@@ -407,25 +442,10 @@ null
 <td>
 
 ```
-[name: text "another name": 123]
-```
-
-</td>
-<td>
-
-```json
-{"name": "text", "another name": 123}
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-name: text
-other name: 123
+name
+  text
+other name
+  123
 ```
 
 </td>
@@ -447,39 +467,33 @@ other name: 123
 ```
 name
   text
-multiline text
-  "
+multiline text "
   text
   next
   line
-text in line
-  '
+text in line '
   text
   in
   line
 bool
   true
 empty array
-  []
-value array
-  [null]
+  |
+with empty value
+  |
+    "
 array
   1
   2
   3
-array table
-  |
+array table |
   1 12.34 Name
-  2 56.78 "Other name"
+  2 56.78 Other\ name
 dictionary
   name
     value
   other name
     other value
-mixed: [1 [2 3]
-  name
-    value
-]
 ```
 
 </td>
@@ -492,12 +506,8 @@ mixed: [1 [2 3]
   "text in line": "textinline",
   "bool": true,
   "empty array": [],
-  "value array": [null],
-  "array": [
-    1,
-    2,
-    3
-  ],
+  "with empty value": [""],
+  "array": [1, 2, 3],
   "array table": [
     [1, 12.34, "Name"]
     [2, 56.78, "Other name"]
@@ -505,10 +515,7 @@ mixed: [1 [2 3]
   "dictionary": {
     "name": "value",
     "other name": "other value"
-  },
-  "mixed": [1, [2, 3], {
-    "name": "value"
-  }]
+  }
 }
 ```
 
@@ -522,7 +529,7 @@ mixed: [1 [2 3]
 
 ```
 binary data length 10
-  | 10 ..........
+  | 10 
 ```
 
 </td>
@@ -530,7 +537,7 @@ binary data length 10
 
 ```json
 {
-  "binary data length 10": "\u0000..."
+  "binary data length 10": "\u0003..."
 }
 ```
 
@@ -550,7 +557,7 @@ gzip + base64
 
 ```json
 {
-  "gzip + base64": "text text text text ..."
+  "gzip + base64": "text text text ..."
 }
 ```
 
@@ -562,7 +569,7 @@ gzip + base64
 
 ```
 base64
-  | base64 dGV4dCB0ZXh0IHRle...
+  | dGV4dCB0ZXh0IHRle...
 ```
 
 </td>
@@ -592,6 +599,23 @@ reference
 {
   "reference": "other value"
 }
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+|short\ form 1 2 3|name:value||
+```
+
+</td>
+<td>
+
+```json
+["short form",1,2,3,{"name":"value"}]
 ```
 
 </td>
