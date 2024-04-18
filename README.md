@@ -22,7 +22,7 @@
 - Text
 - Number
 - Boolean
-- Array
+- List
 - Dictionary
 - Null
 - Binary
@@ -420,7 +420,7 @@ null
 <td>
 
 ```
-|,
+:,
 1,12.34,Comma separator
 2,56.78,Other name
 ```
@@ -478,15 +478,15 @@ text in line '
 bool
   true
 empty array
-  |
+  :
 with empty value
-  |
+  :
     "
 array
   1
   2
   3
-array table |
+array table:
   1 12.34 Name
   2 56.78 Other\ name
 dictionary
@@ -529,7 +529,7 @@ dictionary
 
 ```
 binary data length 10
-  | 10 
+  :10 
 ```
 
 </td>
@@ -549,7 +549,7 @@ binary data length 10
 
 ```
 gzip + base64
-  | eNoDAAAAAAE=
+  :eNoDAAAAAAE=
 ```
 
 </td>
@@ -569,7 +569,7 @@ gzip + base64
 
 ```
 base64
-  | dGV4dCB0ZXh0IHRle...
+  :dGV4dCB0ZXh0IHRle...
 ```
 
 </td>
@@ -589,7 +589,7 @@ base64
 
 ```
 reference
-  | {dictionary.other name}
+  :{dictionary.other name}
 ```
 
 </td>
