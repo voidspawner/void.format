@@ -477,15 +477,14 @@ text in line '
   line
 bool
   true
-empty array:
+empty list:
 with empty value
-  :
-    "
-array
+  |""|
+list
   1
   2
   3
-array table:
+table:
   1 12.34 Name
   2 56.78 Other\ name
 dictionary
@@ -521,10 +520,10 @@ code:
   "multiline text": "text\nnext\nline",
   "text in line": "textinline",
   "bool": true,
-  "empty array": [],
+  "empty list": [],
   "with empty value": [""],
-  "array": [1, 2, 3],
-  "array table": [
+  "list": [1, 2, 3],
+  "table": [
     [1, 12.34, "Name"]
     [2, 56.78, "Other name"]
   ],
@@ -537,7 +536,17 @@ code:
     ["=", "expr", 1, "+", 1, "*", 2, "*", ["cos", 0.5]],
     ["request", {
       "url": "https://site.com",
-      ""
+      "header": {
+        "User": 12345,
+        "Key": 12345
+      },
+      "param": {
+        "id": 12345
+      },
+      "done": [
+        [".", "{text}"],
+        [".", "{code}"]
+      ]
     }]
   ]
 }
