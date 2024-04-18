@@ -398,7 +398,7 @@ null
 <td>
 
 ```
-|
+:
 1 12.34 Name
 2 56.78 Other\ name
 ```
@@ -477,8 +477,7 @@ text in line '
   line
 bool
   true
-empty array
-  :
+empty array:
 with empty value
   :
     "
@@ -494,6 +493,23 @@ dictionary
     value
   other name
     other value
+code:
+  . Hi\ World
+  = expr 1 + 1 * 2 * |cos 0.5|
+  request
+    url
+      https://site.com
+    header
+      User
+        12345
+      Key
+        12345
+    param
+      id
+        12345
+    done:
+      . {text}
+      . {code}
 ```
 
 </td>
@@ -515,7 +531,15 @@ dictionary
   "dictionary": {
     "name": "value",
     "other name": "other value"
-  }
+  },
+  "code": [
+    [".", "Hi World"],
+    ["=", "expr", 1, "+", 1, "*", 2, "*", ["cos", 0.5]],
+    ["request", {
+      "url": "https://site.com",
+      ""
+    }]
+  ]
 }
 ```
 
