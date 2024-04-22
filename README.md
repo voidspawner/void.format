@@ -660,11 +660,7 @@ reference
 **[⌜ V O I D lang ⌟](https://github.com/voidspawner/void.lang)** is the language for rapidly creating applications in the **JSON format**. It is used as a replacement for both the standard Bash/CMD/etc. languages and for writing **UI Applications**, **Servers** and **Games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one JSON file**. Since the **code is presented as data**, applications can be easily generated with **AI**, updated, installed and launched remotely.
 
 ## V O I D engine
-**[⌜ V O I D engine ⌟](https://github.com/voidspawner/void.lang#game-engine)** is a compiled **V O I D spawner** game for rapidly creating apps and games in **V O I D lang**. It use multiple game engines:
-
-- **Godot Engine**
-- **Unreal 5 Engine**
-- **V O I D engine**
+**[⌜ V O I D engine ⌟](https://github.com/voidspawner/void.lang#game-engine)** is a compiled **V O I D spawner** game for rapidly creating apps and games in **V O I D lang**.
 
 ## V O I D os
 **[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create applications and games.
