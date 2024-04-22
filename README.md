@@ -658,3 +658,30 @@ reference
 
 ## V O I D lang
 **[⌜ V O I D lang ⌟](https://github.com/voidspawner/void.lang)** is the language for rapidly creating applications in the **JSON format**. It is used as a replacement for both the standard Bash/CMD/etc. languages and for writing **UI Applications**, **Servers** and **Games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one JSON file**. Since the **code is presented as data**, applications can be easily generated with **AI**, updated, installed and launched remotely.
+
+## V O I D format
+**[⌜ V O I D format ⌟](https://github.com/voidspawner/void.format)** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by human and by program.
+
+## V O I D Engine
+**[⌜ V O I D format ⌟](https://github.com/voidspawner/void.lang#game-engine)** is a compiled **V O I D spawner** game for rapidly creating apps and games in **V O I D lang**. It use multiple game engines:
+
+- **Godot Engine**
+- **Unreal 5 Engine**
+- **V O I D engine**
+
+## V O I D ai
+Generate **images・videos・texts・assets**. A limited number of uses are available for free. To use extra **V O I D ai** you can **pay** with **⦵ voids** digital currency.
+
+Will be available in 2024
+
+## V O I D voids
+Digital currency used in the **V O I D ecosystem**.
+
+- Name ```voids```
+- Symbol ```⦵```
+- Exchange rate ```⦵ 1``` = ```$ 1``` = ```USD₮ 1```
+
+The currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
+
+## V O I D social
+**[⌜ V O I D social ⌟](https://voidsp.com)** is a **social network** for messaging, sharing apps, games, images, videos and other content. Buy and sell, find job, crypto exchange, transfer **V O I D voids** and more other.
